@@ -1,0 +1,237 @@
+Hey Arun and Shivam
+Shivam@RamuKaka:~$  docker run hello-world
+docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/create": dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+Shivam@RamuKaka:~$ docker login
+Log in with your Docker ID or email address to push and pull images from Docker Hub. If you don't have a Docker ID, head over to https://hub.docker.com/ to create one.
+You can log in with your password or a Personal Access Token (PAT). Using a limited-scope PAT grants better security and is required for organizations using SSO. Learn more at https://docs.docker.com/go/access-tokens/
+
+Username: ^C
+Shivam@RamuKaka:~$ docker run hello-world
+docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/create": dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+Shivam@RamuKaka:~$ sudo docker run hello-world
+[sudo] password for Shivam: 
+sudo: a password is required
+Shivam@RamuKaka:~$  sudo groupadd docker
+[sudo] password for Shivam: 
+groupadd: group 'docker' already exists
+Shivam@RamuKaka:~$ sudo usermod -aG docker Shivam
+Shivam@RamuKaka:~$ docker run hello-world
+docker: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Post "http://%2Fvar%2Frun%2Fdocker.sock/v1.24/containers/create": dial unix /var/run/docker.sock: connect: permission denied.
+See 'docker run --help'.
+Shivam@RamuKaka:~$ newgrp docker
+Hey Arun and Shivam
+Shivam@RamuKaka:~$  docker run hello-world
+Unable to find image 'hello-world:latest' locally
+latest: Pulling from library/hello-world
+c1ec31eb5944: Pull complete 
+Digest: sha256:ac69084025c660510933cca701f615283cdbb3aa0963188770b54c31c8962493
+Status: Downloaded newer image for hello-world:latest
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
+Shivam@RamuKaka:~$ docker images | tail -2
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+hello-world   latest    d2c94e258dcb   8 months ago   13.3kB
+Shivam@RamuKaka:~$ docker images ls | tail -2
+REPOSITORY   TAG       IMAGE ID   CREATED   SIZE
+Shivam@RamuKaka:~$ docker image ls | tail -2
+REPOSITORY    TAG       IMAGE ID       CREATED        SIZE
+hello-world   latest    d2c94e258dcb   8 months ago   13.3kB
+Shivam@RamuKaka:~$ docker pull ubuntu:22.04
+22.04: Pulling from library/ubuntu
+a48641193673: Pull complete 
+Digest: sha256:6042500cf4b44023ea1894effe7890666b0c5c7871ed83a97c36c76ae560bb9b
+Status: Downloaded newer image for ubuntu:22.04
+docker.io/library/ubuntu:22.04
+Shivam@RamuKaka:~$ docker run -it ubuntu:22.04 bash
+apt install lsb-release
+root@921ba513ea01:/# apt install lsb-release
+Shivam@RamuKaka:~$ docker run -it --name shivam ubuntu:22.04
+Shivam@RamuKaka:~$ sudo docker ps
+Shivam@RamuKaka:~$ docker run -it --name shivam ubuntu:22.04
+root@63115be790e9:/# exit
+exit
+Shivam@RamuKaka:~$ docker run -it --name shivam ubuntu:22.04
+docker: Error response from daemon: Conflict. The container name "/shivam" is already in use by container "63115be790e93070360153296810d2d381b65ce59c579eb58cc8f7dc0525aa5f". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+Shivam@RamuKaka:~$ docker run -it --name rm shivam ubuntu:22.04
+Unable to find image 'shivam:latest' locally
+docker: Error response from daemon: pull access denied for shivam, repository does not exist or may require 'docker login': denied: requested access to the resource is denied.
+See 'docker run --help'.
+Shivam@RamuKaka:~$ docker run -it --rm --name shivam ubuntu:22.04
+docker: Error response from daemon: Conflict. The container name "/shivam" is already in use by container "63115be790e93070360153296810d2d381b65ce59c579eb58cc8f7dc0525aa5f". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+Shivam@RamuKaka:~$ docker run -it --rm --name shi ubuntu:22.04
+root@6ae82c6c6e32:/# exit
+exit
+Shivam@RamuKaka:~$ docker container rm shivam
+shivam
+Shivam@RamuKaka:~$ docker run -it --rm --name shivam ubuntu:22.04
+root@a43898ec22db:/# exit
+exit
+Shivam@RamuKaka:~$ docker run -it --name shivam ubuntu:22.04
+root@66775b112573:/# exit
+exit
+Shivam@RamuKaka:~$ docker run -it --name shivam ubuntu:22.04
+docker: Error response from daemon: Conflict. The container name "/shivam" is already in use by container "66775b112573d163373828bc736d44f725cc7433452c9735fb57f4217e858cd8". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+Shivam@RamuKaka:~$ docker container rm shivam
+shivam
+Shivam@RamuKaka:~$ docker run -it --name shivam ubuntu:22.04
+root@95417f0b90aa:/# exit
+exit
+Shivam@RamuKaka:~$ docker run -it --name shivam ubuntu:22.04
+docker: Error response from daemon: Conflict. The container name "/shivam" is already in use by container "95417f0b90aa6b8f70312a82be4031aa042d635afd783ed5a84df909dba581d6". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+Shivam@RamuKaka:~$ docker container stop shivam
+shivam
+Shivam@RamuKaka:~$ docker run -it --name shivam ubuntu:22.04
+docker: Error response from daemon: Conflict. The container name "/shivam" is already in use by container "95417f0b90aa6b8f70312a82be4031aa042d635afd783ed5a84df909dba581d6". You have to remove (or rename) that container to be able to reuse that name.
+See 'docker run --help'.
+Shivam@RamuKaka:~$ docker container rm shivam
+shivam
+Shivam@RamuKaka:~$ docker run -it --name shivam ubuntu:22.04
+root@63b58346c843:/# exit
+exit
+Shivam@RamuKaka:~$ docker container rm shivam
+shivam
+Shivam@RamuKaka:~$ 
+Shivam@RamuKaka:~$ docker run -it --name shivam ubuntu:22.04
+Shivam@RamuKaka:~$ sudo docker attach shivam
+Shivam@RamuKaka:~$ sudo docker exec -it c1fc966c0c69 bash 
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/HelloFromDocker$ docker build -t hello-diot:v0 .
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/HelloFromDocker$ docker run -it --name hello1 hello-diot:v0
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/HelloFromAlpine$ docker images | head -5
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/HelloFromAlpine$ docker images
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/HelloFromAlpine$ docker container rm h4
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/HelloFromArun$ docker build -t arun .
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/HelloFromArun$ docker run arun
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/RunUseCase$ docker build -t shivam .
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/RunUseCase$ docker run -it shivam     
+
+
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/RunUseCase$ docker build -t shivam .
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/RunUseCase$ docker run -it shivam
+Hello
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/RunUseCase$ docker run -it shivam bash
+root@28a2911e4b35:/# 
+
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/RunUseCase$ docker ps -a | grep shivam
+
+
+
+[docker port 5000 redirect on port 6500 ]
+dockerun -it -p 6400:5000 py (-p = port map)
+
+
+
+           [docker volume create]
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code$ docker volume create myiot
+myiot
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code$ docker volume inspect myiot
+[
+    {
+        "CreatedAt": "2024-01-02T12:54:25+05:30",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/myiot/_data",
+        "Name": "myiot",
+        "Options": null,
+        "Scope": "local"
+    }
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code$ docker run -it --name dv -v myiot:/data ubuntu:22.04  (-v = volume)
+root@d4848d30cd09:/# ls
+bin  boot  data  dev  etc  home  lib  lib32  lib64  libx32  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@d4848d30cd09:/# cd data 
+root@d4848d30cd09:/data# ls
+root@d4848d30cd09:/data# 
+root@d4848d30cd09:/data# mkdir containerdata
+root@d4848d30cd09:/data/containerdata# touch jkl.txt
+root@d4848d30cd09:/data/containerdata# echo "hello kpo" >> jkl.txt
+root@d4848d30cd09:/data/containerdata# cat jkl.txt
+hello kpo
+
+Shivam@RamuKaka:/$ sudo su root
+[sudo] password for Shivam:  
+root@RamuKaka:/# ls /var/lib/
+AccountsService  avahi-autoipd         cricket              fwupd        ispell       mongodb         os-prober   samba         systemd                  unattended-upgrades  xfonts
+acpi-support     bluetooth             dbus                 gdm3         libreoffice  mosquitto       PackageKit  sgml-base     tpm                      update-manager       xkb
+alsa             boltd                 dhcp                 geoclue      libuuid      mysql           pam         shells.state  ubiquity                 update-notifier      xml-core
+apache2          BrlAPI                dictionaries-common  ghostscript  locales      mysql-files     plocate     shim-signed   ubuntu-advantage         upower
+app-info         ca-certificates-java  docker               git          logrotate    mysql-keyring   plymouth    snapd         ubuntu-drivers-common    usb_modeswitch
+apport           colord                dpkg                 grafana      man-db       mysql-upgrade   polkit-1    snmp          ubuntu-release-upgrader  usbutils
+apt              command-not-found     emacsen-common       grub         mecab        NetworkManager  private     sudo          ucf                      vim
+aspell           containerd            fprint               hp           misc         openvpn         python      swcatalog     udisks2                  whoopsie
+root@RamuKaka:/# ls /var/lib/docker/volumes/myiot/
+_data
+root@RamuKaka:/# cd /var/lib/docker/volumes/myiot/_data/
+root@RamuKaka:/var/lib/docker/volumes/myiot/_data# ls
+containerdata
+root@RamuKaka:/var/lib/docker/volumes/myiot/_data# cd containerdata/
+root@RamuKaka:/var/lib/docker/volumes/myiot/_data/containerdata# ls
+jkl.txt
+root@RamuKaka:/var/lib/docker/volumes/myiot/_data/containerdata# cat jkl.txt 
+hello kpo
+root@RamuKaka:/var/lib/docker/volumes/myiot/_data/containerdata# sudo nano jkl.txt 
+root@RamuKaka:/var/lib/docker/volumes/myiot/_data/containerdata# 
+
+root@d4848d30cd09:~# cd /data/containerdata/
+root@d4848d30cd09:/data/containerdata# cat jkl.txt 
+hello kpo
+
+                             [docker compose]
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/dockercompose$ docker-compose build   [build image]
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/dockercompose$ docker-compose up -d        [create container]
+Recreating dockercompose_pythonapp_1 ... done
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/dockercompose$ docker ps
+CONTAINER ID   IMAGE                     COMMAND                  CREATED         STATUS         PORTS     NAMES
+c1200a5a43de   dockercompose_pythonapp   "python user_driven_…"   4 seconds ago   Up 2 seconds             dockercompose_pythonapp_1
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/dockercompose$ docker attach c1200a5a43de      []
+yes
+Enter the first number : 10
+Enter the second number : 20
+Sum of 10 and 20 is 30
+Shivam@RamuKaka:~/Edge_and_cloud/Docker_Code/dockercompose$ 
+
+
+
+
+sudo touch /etc/mosquitto/userauth
+sudo mosquitto_passwd -b /etc/mosquitto/userauth diot diot123
+sudo chmod 777 /etc/mosquitto/userauth
+sudo chown mosquitto:mosquitto /etc/mosquitto/userauth
+
+cd /etc/mosquitto/conf.d
+touch userservice.conf
+sudo nano userservice.conf
+    allow_anonymous false
+    listener 1883 0.0.0.0
+    password_file /etc/mosquitto/userauth
+
+sudo service mosquitto restart
+
+
+
+
+             [docker hub]
